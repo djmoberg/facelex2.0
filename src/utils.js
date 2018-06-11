@@ -11,3 +11,56 @@ export function calculateHours(from, to) {
 
     return (toH + toM) - (fromH + fromM)
 }
+
+export function limitTo(string) {
+    if (string.length > 10)
+        return string.substring(0, 10) + "..."
+    else
+        return string
+}
+
+export function uniqueUserList(overview) {
+    let users = []
+    let list = []
+
+    for (let i = 0; i < overview.length; i++) {
+        if (!users.includes(overview[i].name)) {
+            users.push(overview[i].name)
+            list.push({text: overview[i].name, value: overview[i].name}) 
+        }
+    }
+
+    return list
+}
+
+export function getMonths() {
+    return [
+        {text: "Januar", value: "Januar"}, 
+        {text: "Februar", value: "Februar"}, 
+        {text: "Mars", value: "Mars"}, 
+        {text: "April", value: "April"}, 
+        {text: "Mai", value: "Mai"}, 
+        {text: "Juni", value: "Juni"}, 
+        {text: "Juli", value: "Juli"}, 
+        {text: "August", value: "August"}, 
+        {text: "September", value: "September"}, 
+        {text: "Oktober", value: "Oktober"}, 
+        {text: "November", value: "November"}, 
+        {text: "Desember", value: "Desember"}
+    ]
+}
+
+export function uniqueYearList(overview) {
+    let dates = []
+    let list = []
+
+    for (let i = 0; i < overview.length; i++) {
+        let year = new Date(overview[i].workDate).getFullYear()
+        if (!dates.includes(year)) {
+            dates.push(year)
+            list.push({text: year, value: year}) 
+        }
+    }
+
+    return list
+}

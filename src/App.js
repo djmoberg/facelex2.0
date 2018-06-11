@@ -13,7 +13,14 @@ class App extends Component {
 		}
 	}
 
+	componentDidMount() {
+		const activeTab = localStorage.getItem('activeTab')
+		if (activeTab)
+        	this.setState({activeTab: activeTab})
+    }
+
 	handleMenuClick = (name) => {
+		localStorage.setItem('activeTab', name)
 		this.setState({ activeTab: name })
 	}
 
