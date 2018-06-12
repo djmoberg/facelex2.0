@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { calculateHours, limitTo, uniqueUserList, uniqueYearList, getMonths } from '../utils'
 
-import { Table, Dropdown, Form } from 'semantic-ui-react'
+import { Table, Dropdown, Form, Modal, Button, Icon, Header } from 'semantic-ui-react'
 
 const request = require('superagent');
 
@@ -16,7 +16,9 @@ export default class Overview extends Component {
             // selectedYear: new Date().getFullYear(),
             selectedMonth: "Alle",
             selectedYear: "Alle",
-            totalHours: 0
+            totalHours: 0,
+            modalOpen: false,
+            selectedComment: ""
         }
 
         this.fetchOverview()
@@ -121,12 +123,36 @@ export default class Overview extends Component {
                                     <Table.Cell>{new Date(overview.workDate).toLocaleDateString()}</Table.Cell>
                                     <Table.Cell>{overview.workFrom} - {overview.workTo}</Table.Cell>
                                     <Table.Cell>{calculateHours(overview.workFrom, overview.workTo)}</Table.Cell>
-                                    <Table.Cell>{limitTo(overview.comment)}</Table.Cell>
+                                    <Table.Cell
+                                        style={{cursor: "pointer"}}
+                                        onClick={() => this.setState({ modalOpen: true, selectedComment: overview.comment })}
+                                    >
+                                        {limitTo(overview.comment)}
+                                    </Table.Cell>
                                 </Table.Row>
                             )
                         }
                     </Table.Body>
                 </Table>
+                <Modal
+                    closeIcon
+                    open={this.state.modalOpen}
+                    onClose={() => this.setState({ modalOpen: false })}
+                >
+                    <Header icon="comment" content="Kommentar" />
+                    <Modal.Content>
+                        <pre>
+                            <p>
+                                {this.state.selectedComment}
+                            </p>
+                        </pre>
+                    </Modal.Content>
+                    {/* <Modal.Actions>
+                        <Button color="red" onClick={() => this.setState({ modalOpen: false })} >
+                            <Icon name="remove" /> Lukk
+                        </Button>
+                    </Modal.Actions> */}
+                </Modal>
             </div>
         );
     }
