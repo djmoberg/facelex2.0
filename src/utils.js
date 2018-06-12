@@ -35,19 +35,31 @@ export function uniqueUserList(overview) {
 
 export function getMonths() {
     return [
-        {text: "Januar", value: "Januar"}, 
-        {text: "Februar", value: "Februar"}, 
-        {text: "Mars", value: "Mars"}, 
-        {text: "April", value: "April"}, 
-        {text: "Mai", value: "Mai"}, 
-        {text: "Juni", value: "Juni"}, 
-        {text: "Juli", value: "Juli"}, 
-        {text: "August", value: "August"}, 
-        {text: "September", value: "September"}, 
-        {text: "Oktober", value: "Oktober"}, 
-        {text: "November", value: "November"}, 
-        {text: "Desember", value: "Desember"}
+        {text: "Januar", value: "0"}, 
+        {text: "Februar", value: "1"}, 
+        {text: "Mars", value: "2"}, 
+        {text: "April", value: "3"}, 
+        {text: "Mai", value: "4"}, 
+        {text: "Juni", value: "5"}, 
+        {text: "Juli", value: "6"}, 
+        {text: "August", value: "7"}, 
+        {text: "September", value: "8"}, 
+        {text: "Oktober", value: "9"}, 
+        {text: "November", value: "10"}, 
+        {text: "Desember", value: "11"}
     ]
+    // {text: "Januar", value: "Januar"}, 
+    // {text: "Februar", value: "Februar"}, 
+    // {text: "Mars", value: "Mars"}, 
+    // {text: "April", value: "April"}, 
+    // {text: "Mai", value: "Mai"}, 
+    // {text: "Juni", value: "Juni"}, 
+    // {text: "Juli", value: "Juli"}, 
+    // {text: "August", value: "August"}, 
+    // {text: "September", value: "September"}, 
+    // {text: "Oktober", value: "Oktober"}, 
+    // {text: "November", value: "November"}, 
+    // {text: "Desember", value: "Desember"}
 }
 
 export function uniqueYearList(overview) {
