@@ -11,7 +11,8 @@ export default class MyMenu extends Component {
                     <Menu.Item 
                         name='Velg bruker' 
                         active={activeTab === "chooseUser"} 
-                        onClick={() => this.props.onMenuClick("chooseUser")} />
+                        onClick={() => this.props.onMenuClick("chooseUser")} 
+                    />
                     <Menu.Item
                         name='Bruker'
                         active={activeTab === "user"}

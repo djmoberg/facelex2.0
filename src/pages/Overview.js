@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { calculateHours, limitTo, uniqueUserList, uniqueYearList, getMonths } from '../utils'
 
-import { Table, Dropdown, Form, Modal, Button, Icon, Header } from 'semantic-ui-react'
+import { Table, Dropdown, Form, Modal, Header } from 'semantic-ui-react'
 
 const request = require('superagent');
 

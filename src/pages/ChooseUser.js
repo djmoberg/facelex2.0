@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Form } from 'semantic-ui-react'
 
-export default class Overview extends Component {
+export default class ChooseUser extends Component {
     render() {
         return (
             <div style={{ maxWidth: "300px" }} >

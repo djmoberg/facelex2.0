@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './Menu'
 import Overview from './pages/Overview'
 import ChooseUser from './pages/ChooseUser'
+import User from './pages/User'
 
 import { Segment } from 'semantic-ui-react'
 
@@ -30,7 +31,7 @@ class App extends Component {
 			case "chooseUser":
 				return <ChooseUser />
 			case "user":
-				break;
+				return <User />
 			case "overview":
 				return <Overview />
 			default:
