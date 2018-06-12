@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Menu from './Menu'
 import Overview from './pages/Overview'
+import ChooseUser from './pages/ChooseUser'
 
 import { Segment } from 'semantic-ui-react'
 
@@ -27,7 +28,7 @@ class App extends Component {
 	renderPage(name) {
 		switch (name) {
 			case "chooseUser":
-				break;
+				return <ChooseUser />
 			case "user":
 				break;
 			case "overview":
