@@ -7,49 +7,55 @@ import User from './pages/User'
 import { Segment } from 'semantic-ui-react'
 
 class App extends Component {
-	constructor(props) {
-		super(props)
+    constructor(props) {
+        super(props)
 
-		this.state = {
-			activeTab: "chooseUser"
-		}
-	}
-
-	componentDidMount() {
-		const activeTab = localStorage.getItem('activeTab')
-		if (activeTab)
-        	this.setState({activeTab: activeTab})
+        this.state = {
+            activeTab: "chooseUser",
+            name: ""
+        }
     }
 
-	handleMenuClick = (name) => {
-		localStorage.setItem('activeTab', name)
-		this.setState({ activeTab: name })
-	}
+    componentDidMount() {
+        const activeTab = localStorage.getItem('activeTab')
+        if (activeTab)
+            this.setState({ activeTab: activeTab })
+    }
 
-	renderPage(name) {
-		switch (name) {
-			case "chooseUser":
-				return <ChooseUser />
-			case "user":
-				return <User />
-			case "overview":
-				return <Overview />
-			default:
-				break;
-		}
-	}
+    handleMenuClick = (name) => {
+        localStorage.setItem('activeTab', name)
+        this.setState({ activeTab: name })
+    }
 
-	render() {
-		return (
-			<div className="App">
-				<h1 style={{ textAlign: "center" }} >Facelex2.0</h1>
-				<Menu activeTab={this.state.activeTab} onMenuClick={this.handleMenuClick} />
-				<Segment>
-					{this.renderPage(this.state.activeTab)}
-				</Segment>
-			</div>
-		);
-	}
+    handleNameChange = (name) => {
+        this.setState({ name })
+    }
+
+    renderPage(name) {
+        switch (name) {
+            case "chooseUser":
+                return <ChooseUser setName={this.handleNameChange} />
+            case "user":
+                return <User />
+            case "overview":
+                return <Overview />
+            default:
+                break;
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <h1 style={{ textAlign: "center" }} >Facelex2.0</h1>
+                <p>{this.state.name}</p>
+                <Menu activeTab={this.state.activeTab} onMenuClick={this.handleMenuClick} />
+                <Segment>
+                    {this.renderPage(this.state.activeTab)}
+                </Segment>
+            </div>
+        );
+    }
 }
 
 export default App;
