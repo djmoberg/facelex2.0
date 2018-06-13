@@ -6,13 +6,16 @@ import User from './pages/User'
 
 import { Segment } from 'semantic-ui-react'
 
+const request = require('superagent');
+
 class App extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             activeTab: "chooseUser",
-            name: ""
+            name: "",
+            isLoggedIn: false
         }
     }
 
@@ -20,6 +23,17 @@ class App extends Component {
         const activeTab = localStorage.getItem('activeTab')
         if (activeTab)
             this.setState({ activeTab: activeTab })
+
+        this.isLoggedIn()
+    }
+
+    isLoggedIn() {
+        request
+            .get("http://localhost:3000/user/loggedIn")
+            // .withCredentials()
+            .then((res) => {
+                console.log(res.text)
+            })
     }
 
     handleMenuClick = (name) => {
@@ -29,6 +43,7 @@ class App extends Component {
 
     handleNameChange = (name) => {
         this.setState({ name })
+        this.isLoggedIn()
     }
 
     renderPage(name) {
@@ -48,7 +63,7 @@ class App extends Component {
         return (
             <div className="App">
                 <h1 style={{ textAlign: "center" }} >Facelex2.0</h1>
-                <p>{this.state.name}</p>
+                <p>{this.state.name} {this.state.isLoggedIn ? "true" : "false"}</p>
                 <Menu activeTab={this.state.activeTab} onMenuClick={this.handleMenuClick} />
                 <Segment>
                     {this.renderPage(this.state.activeTab)}
