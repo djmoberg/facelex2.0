@@ -29,7 +29,7 @@ class App extends Component {
 
     isLoggedIn() {
         request
-            .get("http://localhost:3000/user/loggedIn")
+            .get(process.env.REACT_APP_BACKEND + "user/loggedIn")
             .withCredentials()
             .then((res) => {
                 console.log(res)
@@ -42,7 +42,7 @@ class App extends Component {
 
     logOut() {
         request
-            .get("http://localhost:3000/user/logout")
+            .get(process.env.REACT_APP_BACKEND + "user/logout")
             .withCredentials()
             .then((res) => {
                 window.location.reload()

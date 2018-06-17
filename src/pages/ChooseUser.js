@@ -16,7 +16,7 @@ export default class ChooseUser extends Component {
     }
 
     checkLoginInformation() {
-        request.post("http://localhost:3000/user/login")
+        request.post(process.env.REACT_APP_BACKEND + "user/login")
             .send({ username: this.state.name, password: this.state.password })
             .withCredentials()
             .on('error', (err) => {

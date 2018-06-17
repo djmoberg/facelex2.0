@@ -26,7 +26,7 @@ export default class Overview extends Component {
 
     fetchOverview() {
         request
-            .get("http://localhost:3000/overview")
+            .get(process.env.REACT_APP_BACKEND + "overview")
             .then((res) => {
                 this.setState({ overview: res.body })
             })
