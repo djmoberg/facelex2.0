@@ -27,7 +27,7 @@ export default class User extends Component {
     render() {
         return (
             <div>
-                <h2>Bruker</h2>
+                <h2>Bruker: {this.props.username}</h2>
                 <Menu attached='top' >
                     <Menu.Item
                         name='Legg til'

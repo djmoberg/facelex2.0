@@ -30,19 +30,37 @@ class App extends Component {
     isLoggedIn() {
         request
             .get("http://localhost:3000/user/loggedIn")
-            // .withCredentials()
+            .withCredentials()
             .then((res) => {
-                console.log(res.text)
+                console.log(res)
+                if (res.body.loggedIn)
+                    this.setState({ isLoggedIn: true, name: res.body.username })
+                else
+                    this.setState({ isLoggedIn: false, activeTab: "chooseUser" })
+            })
+    }
+
+    logOut() {
+        request
+            .get("http://localhost:3000/user/logout")
+            .withCredentials()
+            .then((res) => {
+                window.location.reload()
             })
     }
 
     handleMenuClick = (name) => {
-        localStorage.setItem('activeTab', name)
-        this.setState({ activeTab: name })
+        if (name === "logOut")
+            this.logOut()
+        else {
+            localStorage.setItem('activeTab', name)
+            this.setState({ activeTab: name })
+        }
     }
 
     handleNameChange = (name) => {
-        this.setState({ name })
+        localStorage.setItem('activeTab', "user")
+        this.setState({ name, activeTab: "user" })
         this.isLoggedIn()
     }
 
@@ -51,7 +69,7 @@ class App extends Component {
             case "chooseUser":
                 return <ChooseUser setName={this.handleNameChange} />
             case "user":
-                return <User />
+                return <User username={this.state.name} />
             case "overview":
                 return <Overview />
             default:
@@ -63,8 +81,7 @@ class App extends Component {
         return (
             <div className="App">
                 <h1 style={{ textAlign: "center" }} >Facelex2.0</h1>
-                <p>{this.state.name} {this.state.isLoggedIn ? "true" : "false"}</p>
-                <Menu activeTab={this.state.activeTab} onMenuClick={this.handleMenuClick} />
+                <Menu activeTab={this.state.activeTab} onMenuClick={this.handleMenuClick} isLoggedIn={this.state.isLoggedIn} />
                 <Segment>
                     {this.renderPage(this.state.activeTab)}
                 </Segment>
